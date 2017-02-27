@@ -1,5 +1,7 @@
 #include "vapp.h"
-
+#ifndef _WIN32
+#  include <sys/time.h>
+#endif
 #include <time.h>
 
 void VermilionApplication::window_size_callback(GLFWwindow* window, int width, int height)

@@ -574,6 +574,7 @@ void vglLoadDDS(const char* filename, vglImageData* image)
 {
     FILE* f;
 
+    {
     memset(image, 0, sizeof(*image));
 
     f = fopen(filename, "rb");
@@ -640,6 +641,7 @@ void vglLoadDDS(const char* filename, vglImageData* image)
         width >>= 1;
         height >>= 1;
         depth >>= 1;
+    }
     }
 
 done_close_file:

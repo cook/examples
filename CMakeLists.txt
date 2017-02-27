@@ -4,6 +4,8 @@ project (vermilion9)
 
 LINK_DIRECTORIES( ${CMAKE_SOURCE_DIR}/lib )
 
+add_definitions("-std=c++11")
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
@@ -86,9 +88,9 @@ if (OPENMP_FOUND)
 endif()
 
 foreach(EXAMPLE ${EXAMPLES})
-  add_executable(${EXAMPLE} WIN32 src/${EXAMPLE}/${EXAMPLE}.cpp ${COMMON_HEADERS})
+  add_executable(${EXAMPLE} src/${EXAMPLE}/${EXAMPLE}.cpp ${COMMON_HEADERS})
   set_property(TARGET ${EXAMPLE} PROPERTY DEBUG_POSTFIX _d)
-  target_link_libraries(${EXAMPLE} ${COMMON_LIBS})
+  target_link_libraries(${EXAMPLE} ${COMMON_LIBS} Xxf86vm Xrandr Xi Xcursor Xinerama)
   if(MSVC)
     configure_file(${PROJECT_SOURCE_DIR}/build/templates/vs2013.vcxproj.user.in ${CMAKE_CURRENT_BINARY_DIR}/${EXAMPLE}.vcxproj.user @ONLY)
   endif(MSVC)
